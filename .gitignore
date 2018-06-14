@@ -1,1 +1,7 @@
 .vimrc
+.vscode/*
+
+*.elf
+*.hex
+*.map
+*.o
