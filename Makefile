@@ -82,6 +82,11 @@ clean:
 	$(TARGET).lss $(TARGET).sym $(TARGET).map $(TARGET)~ \
 	$(TARGET).eeprom
 
+squeaky_clean:
+	rm -f *.elf *.hex *.obj *.o *.d \
+	*.d *.eep *.lst *.lss *.sym *.map\
+	*~ *.eeprom
+
 flash: $(TARGET).hex
 	$(AVRDUDE) -c $(AVRDUDE) -c$(PROGRAMMER_TYPE) -p $(MCU) $(PROGRAMMER_ARGS) -U flash:w:$<
 

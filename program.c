@@ -6,27 +6,43 @@
 #include "servo.h"
 #include "utils.h"
 
+#include "movement.h"
+
 volatile char bytes[10] = {0};
 volatile int bytes_index = 0;
 
 volatile char servo_select = 0;
-
 volatile int run = 0;
 
 ISR(USART_RX_vect) {
 	char byte = UDR0;
 	transmitByte(byte);
 	if (byte == '\r') {
-		transmitByte('\n');
+		printString("\n> ");
 		bytes[bytes_index] = 0;
-		if(bytes[0] == 's') {
-			servo_select = atoi(bytes+1);
-		} else if (bytes[0] == 'r') {
-			run = 1;
-		} else if (bytes[0] == 'p') {
-			run = 0;
-		} else {
-			setServoAngle(servo_select, atoi(bytes));
+		switch(bytes[0]) {
+			case 's':
+				servo_select = atoi(bytes+1);
+				run = 5;
+				break;
+			case 'w':
+			    run = 1;
+				break;
+			case 'x':
+				run = 2;
+				break;
+			case 'a':
+				run = 3;
+				break;
+			case 'd':
+				run = 4;
+				break;
+			case 'p':
+				run = 0;
+				break;
+			default:
+				setServoAngle(servo_select, atoi(bytes));
+				break;
 		}
 		bytes_index = 0;
 	} else {
@@ -34,60 +50,6 @@ ISR(USART_RX_vect) {
 		bytes_index = (bytes_index + 1)%10;
 	}
 }
-
-
-void stand(void) {
-    //knees
-    setServoAngle(0, 110);
-    setServoAngle(4, 110);
-    setServoAngle(2, 70);
-    setServoAngle(6, 70);
-
-
-    //hips
-	setServoAngle(1, 140);
-	setServoAngle(5, 140);
-	setServoAngle(3, 40);
-	setServoAngle(7, 40);
-}
-
-void moveForward(void) {
-    //lift front left and rear right legs
-    setServoAngle(0, 180);
-    setServoAngle(4, 180);
-    //move lifted legs forward
-    setServoAngle(1, 90);
-    setServoAngle(5, 180);
-
-    //move lowered legs back
-    setServoAngle(3, 90);
-    setServoAngle(7, 0);
-    _delay_ms(500); //delay to allow servos to actuall move;
-
-    //lower legs
-    setServoAngle(0, 110);
-    setServoAngle(4, 110);
-    _delay_ms(500);
-
-    //lift front right and rear left legs
-    setServoAngle(2, 0);
-    setServoAngle(6, 0);
-
-    //move lifted legs forward
-    setServoAngle(3, 0);
-    setServoAngle(7, 90);
-
-    //move lowered legs back
-    setServoAngle(1, 180);
-    setServoAngle(5, 90);
-    _delay_ms(500);
-
-    //lower legs
-    setServoAngle(2, 70);
-    setServoAngle(6, 70);
-    _delay_ms(500);
-}
-
 
 int main(void) {
 	clear_clkpr(); //set clock to 8MHz
@@ -109,11 +71,25 @@ int main(void) {
 	printString("Welcome!\r\n");
 
 	while(1) {
-		if(run == 1) {
-		    moveForward();
-        } else {
-            stand();
-        }
+		switch(run) {
+			case 0:
+				stand();
+				break;
+			case 1:
+				moveForward();
+				break;
+			case 2:
+				moveBackward();
+				break;
+			case 3:
+				moveLeft();
+				break;
+			case 4:
+				moveRight();
+				break;
+			default:
+				break;
+		}
 	}
 	return 0;
 }
