@@ -100,7 +100,7 @@ void moveLeft(void) {
 
     FRONT_LEFT_LOWER();
     REAR_RIGHT_LOWER();
-    _delay_ms(3000);
+    _delay_ms(500);
 
     FRONT_RIGHT_LIFT();
     REAR_LEFT_LIFT();
@@ -114,7 +114,7 @@ void moveLeft(void) {
 
     FRONT_RIGHT_LOWER();
     REAR_LEFT_LOWER();
-    _delay_ms(3000);
+    _delay_ms(500);
 }
 
 void moveRight(void) {
@@ -130,7 +130,7 @@ void moveRight(void) {
 
     FRONT_LEFT_LOWER();
     REAR_RIGHT_LOWER();
-    _delay_ms(3000);
+    _delay_ms(500);
 
     FRONT_RIGHT_LIFT();
     REAR_LEFT_LIFT();
@@ -144,5 +144,5 @@ void moveRight(void) {
 
     FRONT_RIGHT_LOWER();
     REAR_LEFT_LOWER();
-    _delay_ms(3000);
+    _delay_ms(500);
 }
