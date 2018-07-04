@@ -2,11 +2,17 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
+//AVR Lib includes
 #include "USART.h"
-#include "servo.h"
+#include "ADC.h"
 #include "utils.h"
 
+//Project Includes
 #include "movement.h"
+
+
+#define ADC_PIN 5
+
 
 volatile char bytes[10] = {0};
 volatile int bytes_index = 0;
@@ -23,7 +29,7 @@ ISR(USART_RX_vect) {
 		switch(bytes[0]) {
 			case 's':
 				servo_select = atoi(bytes+1);
-				run = 5;
+				run = 100;
 				break;
 			case 'w':
 			    run = 1;
@@ -36,6 +42,9 @@ ISR(USART_RX_vect) {
 				break;
 			case 'd':
 				run = 4;
+				break;
+			case 't':
+				run = 5;
 				break;
 			case 'p':
 				run = 0;
@@ -51,24 +60,19 @@ ISR(USART_RX_vect) {
 	}
 }
 
+
+
+
 int main(void) {
 	clear_clkpr(); //set clock to 8MHz
-	initUSART(8);
-
-
-	registerServo(0);
-	registerServo(1);
-	registerServo(2);
-	registerServo(3);
-	registerServo(4);
-	registerServo(5);
-	registerServo(6);
-	registerServo(7);
 	
-	initServoTimer();
-    stand();
-
+	initUSART(8);
 	printString("Welcome!\r\n");
+	
+	initADC(ADC_PIN);
+	
+	initLegs();
+	stand();
 
 	while(1) {
 		switch(run) {
@@ -86,6 +90,9 @@ int main(void) {
 				break;
 			case 4:
 				moveRight();
+				break;
+			case 5:
+				twist();
 				break;
 			default:
 				break;

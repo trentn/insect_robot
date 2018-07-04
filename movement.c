@@ -1,19 +1,35 @@
-#include "movement.h"
 #include <util/delay.h>
+#include "servo.h"
+#include "ADC.h"
+
+#include "movement.h"
+
+void initLegs(void) {
+    registerServo(0);
+	registerServo(1);
+	registerServo(2);
+	registerServo(3);
+	registerServo(4);
+	registerServo(5);
+	registerServo(6);
+	registerServo(7);
+	
+	initServoTimer();
+}
 
 void stand(void) {
     //knees
-    setServoAngle(0, 110);
-    setServoAngle(4, 110);
-    setServoAngle(2, 70);
-    setServoAngle(6, 70);
+    setServoAngle(0, 90);
+    setServoAngle(4, 90);
+    setServoAngle(2, 90);
+    setServoAngle(6, 90);
 
 
     //hips
-	setServoAngle(1, 140);
-	setServoAngle(5, 140);
-	setServoAngle(3, 40);
-	setServoAngle(7, 40);
+	setServoAngle(1, 40);
+	setServoAngle(5, 40);
+	setServoAngle(3, 140);
+	setServoAngle(7, 140);
 }
 
 void moveForward(void) {
@@ -22,11 +38,11 @@ void moveForward(void) {
     REAR_RIGHT_LIFT();
     //move lifted legs forward
     FRONT_LEFT_HIP(90);
-    REAR_RIGHT_HIP(180);
+    REAR_RIGHT_HIP(20);
 
     //move lowered legs back
-    FRONT_RIGHT_HIP(90);
-    REAR_LEFT_HIP(0);
+    FRONT_RIGHT_HIP(180);
+    REAR_LEFT_HIP(90);
     _delay_ms(500); //delay to allow servos to actuall move;
 
     //lower legs
@@ -39,11 +55,11 @@ void moveForward(void) {
     REAR_LEFT_LIFT();
 
     //move lifted legs forward
-    FRONT_RIGHT_HIP(0);
-    REAR_LEFT_HIP(90);
+    FRONT_RIGHT_HIP(90);
+    REAR_LEFT_HIP(180);
 
     //move lowered legs back
-    FRONT_LEFT_HIP(180);
+    FRONT_LEFT_HIP(20);
     REAR_RIGHT_HIP(90);
     _delay_ms(500);
 
@@ -145,4 +161,34 @@ void moveRight(void) {
     FRONT_RIGHT_LOWER();
     REAR_LEFT_LOWER();
     _delay_ms(500);
+}
+
+void twist(void) {
+    
+    int delay = getConversion();
+
+    int i = 0;
+    for (; i <=180; i+=10){
+        FRONT_LEFT_HIP(i);
+        FRONT_RIGHT_HIP(i);
+        REAR_LEFT_HIP(i);
+        REAR_RIGHT_HIP(i);
+        int j = 0;
+        for(j = 0; j<delay; j++){
+            _delay_ms(1);
+        }
+    }
+
+    for (; i >=0; i-=10) {
+        FRONT_LEFT_HIP(i);
+        FRONT_RIGHT_HIP(i);
+        REAR_LEFT_HIP(i);
+        REAR_RIGHT_HIP(i);
+        int j = 0;
+        for(j = 0; j<delay; j++){
+            _delay_ms(1);
+        }
+    }
+
+
 }
