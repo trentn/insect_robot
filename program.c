@@ -43,8 +43,11 @@ ISR(USART_RX_vect) {
 			case 'd':
 				run = 4;
 				break;
-			case 't':
+			case 'q':
 				run = 5;
+				break;
+			case 'e':
+				run = 6;
 				break;
 			case 'p':
 				run = 0;
@@ -92,7 +95,10 @@ int main(void) {
 				moveRight();
 				break;
 			case 5:
-				twist();
+				turnRight();
+				break;
+			case 6:
+				turnLeft();
 				break;
 			default:
 				break;

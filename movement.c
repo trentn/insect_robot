@@ -163,6 +163,55 @@ void moveRight(void) {
     _delay_ms(500);
 }
 
+
+void turnRight(void) {
+    FRONT_LEFT_LIFT();
+    REAR_RIGHT_LIFT();
+
+    FRONT_LEFT_HIP(120);
+    REAR_RIGHT_HIP(120);
+
+    FRONT_LEFT_LOWER();
+    REAR_RIGHT_LOWER();
+    _delay_ms(500);
+
+    FRONT_RIGHT_LIFT();
+    REAR_LEFT_LIFT();
+
+    FRONT_LEFT_HIP(40);
+    REAR_RIGHT_HIP(40);
+    _delay_ms(500);
+
+    FRONT_RIGHT_LOWER();
+    REAR_LEFT_LOWER();
+    _delay_ms(500);
+}
+
+
+void turnLeft(void) {
+    FRONT_RIGHT_LIFT();
+    REAR_LEFT_LIFT();
+
+    FRONT_RIGHT_HIP(60);
+    REAR_LEFT_HIP(60);
+    _delay_ms(500);
+
+    FRONT_RIGHT_LOWER();
+    REAR_LEFT_LOWER();
+    _delay_ms(500);
+
+    FRONT_LEFT_LIFT();
+    REAR_RIGHT_LIFT();
+
+    FRONT_RIGHT_HIP(140);
+    REAR_LEFT_HIP(140);
+
+    FRONT_LEFT_LOWER();
+    REAR_RIGHT_LOWER();
+    _delay_ms(500);
+}
+
+
 void twist(void) {
     
     int delay = getConversion();

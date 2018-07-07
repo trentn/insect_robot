@@ -26,4 +26,7 @@ void moveBackward(void);
 void moveLeft(void);
 void moveRight(void);
 
+void turnRight(void);
+void turnLeft(void);
+
 #endif
