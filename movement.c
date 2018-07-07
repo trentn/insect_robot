@@ -74,11 +74,11 @@ void moveBackward(void) {
     FRONT_LEFT_LIFT();
     REAR_RIGHT_LIFT();
     //move lifted legs backward
-    FRONT_LEFT_HIP(180);
+    FRONT_LEFT_HIP(20);
     REAR_RIGHT_HIP(90);
     //move lowered legs forward
-    FRONT_RIGHT_HIP(0);
-    REAR_LEFT_HIP(90);
+    FRONT_RIGHT_HIP(90);
+    REAR_LEFT_HIP(180);
     _delay_ms(500); //delay to allow servos to actuall move;
 
     //lower legs
@@ -90,11 +90,11 @@ void moveBackward(void) {
     FRONT_RIGHT_LIFT();
     REAR_LEFT_LIFT();
     //move lifted legs backward
-    FRONT_RIGHT_HIP(90);
-    REAR_LEFT_HIP(0);
+    FRONT_RIGHT_HIP(180);
+    REAR_LEFT_HIP(90);
     //move lowered legs forward
     FRONT_LEFT_HIP(90);
-    REAR_RIGHT_HIP(180);
+    REAR_RIGHT_HIP(20);
     _delay_ms(500);
 
     //lower legs
@@ -107,11 +107,11 @@ void moveLeft(void) {
     FRONT_LEFT_LIFT();
     REAR_RIGHT_LIFT();
 
-    FRONT_LEFT_HIP(90);
-    REAR_RIGHT_HIP(40);
+    FRONT_LEFT_HIP(40);
+    REAR_RIGHT_HIP(100);
 
     FRONT_RIGHT_HIP(140);
-    REAR_LEFT_HIP(90);
+    REAR_LEFT_HIP(80);
     _delay_ms(500);
 
     FRONT_LEFT_LOWER();
@@ -121,11 +121,11 @@ void moveLeft(void) {
     FRONT_RIGHT_LIFT();
     REAR_LEFT_LIFT();
 
-    FRONT_RIGHT_HIP(90);
+    FRONT_RIGHT_HIP(80);
     REAR_LEFT_HIP(140);
 
-    FRONT_LEFT_HIP(40);
-    REAR_RIGHT_HIP(90);
+    FRONT_LEFT_HIP(100);
+    REAR_RIGHT_HIP(40);
     _delay_ms(500);
 
     FRONT_RIGHT_LOWER();
@@ -137,10 +137,10 @@ void moveRight(void) {
     FRONT_LEFT_LIFT();
     REAR_RIGHT_LIFT();
 
-    FRONT_LEFT_HIP(40);
-    REAR_RIGHT_HIP(90);
+    FRONT_LEFT_HIP(100);
+    REAR_RIGHT_HIP(40);
 
-    FRONT_RIGHT_HIP(90);
+    FRONT_RIGHT_HIP(80);
     REAR_LEFT_HIP(140);
     _delay_ms(500);
 
@@ -152,10 +152,10 @@ void moveRight(void) {
     REAR_LEFT_LIFT();
 
     FRONT_RIGHT_HIP(140);
-    REAR_LEFT_HIP(90);
+    REAR_LEFT_HIP(80);
 
-    FRONT_LEFT_HIP(90);
-    REAR_RIGHT_HIP(40);
+    FRONT_LEFT_HIP(40);
+    REAR_RIGHT_HIP(100);
     _delay_ms(500);
 
     FRONT_RIGHT_LOWER();
