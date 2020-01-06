@@ -1,0 +1,3 @@
+[submodule "fpga_servo_controller"]
+	path = fpga_servo_controller
+	url = https://github.com/trentn/fpga_servo_controller
