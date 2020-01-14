@@ -11,6 +11,11 @@
 
 #include <stdint.h>
 
+/* 
+ * number of joints being controlled
+ */
+#define NUM_JOINTS 12
+
 /*
  * initialize the raspi SPI peripheral to talk with the 
  * FPGA SPI interface

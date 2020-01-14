@@ -7,17 +7,16 @@ void init_screen(){
 }
 
 int main(int argc, char** argv){
-
-    unsigned int servo_id = 11;
-    uint16_t pulse_length = 1500;
-    int adjust_servo = 1;
-    int cali = 1;
+    
+    /*TODO optionally initialize this from calibration file*/
+    uint16_t pulses[NUM_JOINTS] = {0};
 
 
     init_servo_controller();
     init_screen();
 
-    while(cali){
+    int calibrating = 1;
+    while(calibrating){
         clear();
         noecho();
         printw("Press C to calibrate a servo\n");
@@ -26,7 +25,9 @@ int main(int argc, char** argv){
 
         char ch = getch();
         if(ch == 'c') {
-            adjust_servo = 1;
+            unsigned int servo_id = 0;
+            uint16_t pulse_length = 1500;
+            int adjust_servo = 1;
             clear();
             echo();
             printw("Select Servo: ");
@@ -48,6 +49,7 @@ int main(int argc, char** argv){
                         break;
                     case 's':
                         adjust_servo = 0;
+                        pulses[servo_id] = pulse_length;
                         break;
                     default:
                         break;
@@ -60,9 +62,20 @@ int main(int argc, char** argv){
             getch();
         } 
         else if(ch == 'q'){
-            cali = 0;
+            calibrating = 0;
         }
     }
+
+    clear();
+    printw("Calibration Complete\n\nServo ID,Pulse Length\n");
+    for(int i = 0; i < NUM_JOINTS; i++){
+        printw("%d,%d\n", i, pulses[i]);
+    }
+    printw("\n\nPress ENTER to close...");
+    refresh();
+    getch();
+
+
     endwin();
 
     return 0;
