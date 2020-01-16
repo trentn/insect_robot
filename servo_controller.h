@@ -10,11 +10,26 @@
 #define SERVO_CONTROLLER_H
 
 #include <stdint.h>
+#include <stdio.h>
 
 /* 
  * number of joints being controlled
  */
 #define NUM_JOINTS 12
+
+/*
+ * 1 degree is ~10 pico seconds
+ */
+#define ANGLE_CONVERSION_RATE 10
+
+typedef enum orient{left=-1,right=1} orient_type;
+
+typedef struct servo_config {
+    uint16_t zero_angle_pwm;
+    orient_type orientation;
+} servo_conf;
+
+servo_conf servos[NUM_JOINTS];
 
 /*
  * initialize the raspi SPI peripheral to talk with the 
@@ -25,7 +40,7 @@
  *  LSB first
  *  Chip Select Polarity: Low
  */
-void init_servo_controller(void);
+void init_servo_controller(FILE* calibration_file);
 
 /*
  *
@@ -36,6 +51,12 @@ void init_servo_controller(void);
  *      valid range is roughly 700-2300
  */
 void set_servo_pwm(uint8_t servo_id, uint16_t pulse_length);
+
+/*
+ *
+ */
+
+void set_servo_angle(int servo_id, int angle);
 
 /*
  * terminate the SPI connection

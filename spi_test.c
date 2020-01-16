@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     uint16_t center = 1500;
     uint16_t right = 2300;
 
-    init_servo_controller();
+    init_servo_controller(NULL);
 
     while(1){
       set_servo_pwm(servo_id, left);

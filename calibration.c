@@ -12,7 +12,7 @@ int main(int argc, char** argv){
     uint16_t pulses[NUM_JOINTS] = {0};
 
 
-    init_servo_controller();
+    init_servo_controller(NULL);
     init_screen();
 
     int calibrating = 1;
