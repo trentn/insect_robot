@@ -30,6 +30,8 @@ Current Status:
 - [Fusion360 Design](https://a360.co/30rR8bb)
 - [Matlab Simulation](https://twitter.com/trentnov/status/1117585657046732800)
 - [Assembled Leg](https://twitter.com/trentnov/status/1087395075364130817)
+- [Fully Working Robot - Stands up](https://twitter.com/trentnov/status/1217634557660487680)
+
 
 #### FPGA Servo Controller
 The servo controller is a verilog implementation using the [TinyFPGA BX](https://tinyfpga.com/) as the hardware platform.
@@ -37,3 +39,16 @@ The servo controller is a verilog implementation using the [TinyFPGA BX](https:/
 The fpga_servo_controller submodule contains the code which implements a simple SPI interface and 12 PWM generators (this number can be arbitrarily increased).
 
 This verilog is synthezised using the [APIO project](https://github.com/FPGAwars/apio)
+
+#### Servo Controller Library
+The high level logic is run on a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) running Raspbian Buster Lite. 
+
+The [BCM2835 C Library](https://www.airspayce.com/mikem/bcm2835/) is used to configure the SPI interface for use with the custom servo controller described above.
+
+The servo_controller.* files implement a library to interface with the SPI peripheral, selecting servos and setting angles.
+
+#### Up Next for MK2
+These are a few things I have in mind for next steps:
+- Python wrapper around servo_controller.c
+- Walking gaits, first hard-coded/hand designed, then investigate gait generation/discovery
+- Battery Power
