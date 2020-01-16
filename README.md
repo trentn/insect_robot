@@ -27,7 +27,7 @@ Some cringe-worthy videos of the development of this design:
 Currently in development is a 3D printed prototype utilizing an FPGA as a servo controller.
 
 Current Status:
-- [Fusion360 Design](https://twitter.com/trentnov/status/1084988887297114114)
+- [Fusion360 Design](https://a360.co/30rR8bb)
 - [Matlab Simulation](https://twitter.com/trentnov/status/1117585657046732800)
 - [Assembled Leg](https://twitter.com/trentnov/status/1087395075364130817)
 
