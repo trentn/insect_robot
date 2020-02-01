@@ -1,22 +1,25 @@
-all: calibration spi_test angle_test reset stand_up
+SRC = servo_controller.c leg_control.c
+OBJECTS = servo_controller.o leg_control.o
 
-calibration: servo_controller.o
-	gcc calibration.c servo_controller.o -lbcm2835 -lncurses -o calibration
+all: calibration reset stand_up
 
-spi_test: servo_controller.o
-	gcc spi_test.c servo_controller.o -lbcm2835 -o spi_test
+calibration: $(OBJECTS)
+	gcc calibration.c $(OBJECTS) -lbcm2835 -lncurses -o $@
 
-angle_test: servo_controller.o
-	gcc angle_test.c servo_controller.o -lbcm2835 -o angle_test
+spi_test: $(OBJECTS)
+	gcc spi_test.c $(OBJECTS) -lbcm2835 -o $@
 
-reset: servo_controller.o
-	gcc reset.c servo_controller.o	-lbcm2835 -o reset
+angle_test: $(OBJECTS)
+	gcc angle_test.c $(OBJECTS) -lbcm2835 -o $@
 
-stand_up: servo_controller.o
-	gcc stand_up.c servo_controller.o	-lbcm2835 -o stand_up
+reset: $(OBJECTS)
+	gcc reset.c $(OBJECTS) -lbcm2835 -o $@
 
-servo_controller.o: servo_controller.c
-	gcc -c servo_controller.c -o servo_controller.o
+stand_up: $(OBJECTS)
+	gcc stand_up.c $(OBJECTS) -lbcm2835 -o $@
+
+$(OBJECTS): %.o :%.c
+	gcc -c $< -o $@
 
 
 .PHONY: clean
