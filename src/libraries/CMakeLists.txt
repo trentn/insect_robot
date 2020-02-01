@@ -1,6 +1,6 @@
 set(SUBDIRS
-        libraries
-        test_apps)
+        servo_controller
+        leg_control)
 
 foreach(subdir ${SUBDIRS})
     add_subdirectory(${subdir})
