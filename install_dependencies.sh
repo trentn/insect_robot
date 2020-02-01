@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BCMLIBRARY="bcm2835-1.60"
-APT_PACKAGES="libncurses5 libncurses5-dev"
+APT_PACKAGES="cmake libncurses5 libncurses5-dev"
 
 echo "Installing $BCMLIBRARY..."
 if [ ! -d "$BCMLIBRARY" ]; then
