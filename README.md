@@ -23,6 +23,8 @@ Some cringe-worthy videos of the development of this design:
 
 [Mark 1 Source Code](https://github.com/trentn/insect_robot/releases/tag/mk1)
 
+---
+
 ### MK2
 Currently in development is a 3D printed prototype utilizing an FPGA as a servo controller.
 
@@ -40,9 +42,12 @@ The fpga_servo_controller submodule contains the code which implements a simple 
 
 This verilog is synthezised using the [APIO project](https://github.com/FPGAwars/apio)
 
-#### Servo Controller Library
+#### Raspberry Pi Firmware
 The high level logic is run on a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) running Raspbian Buster Lite. 
 
+For instructions on how to build and install the firmware please see the [Installation Guide](./INSTALL.md)
+
+##### Servo Controller Library
 The [BCM2835 C Library](https://www.airspayce.com/mikem/bcm2835/) is used to configure the SPI interface for use with the custom servo controller described above.
 
 The servo_controller.* files implement a library to interface with the SPI peripheral, selecting servos and setting angles.
