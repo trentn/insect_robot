@@ -9,6 +9,9 @@ set(CMAKE_INSTALL_PREFIX install)
 
 #set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+include_directories(${PROJECT_SOURCE_DIR}/extras/include)
+link_directories(${PROJECT_SOURCE_DIR}/extras/lib)
+
 add_subdirectory(src)
 
 
