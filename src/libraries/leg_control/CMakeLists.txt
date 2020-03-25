@@ -1,4 +1,6 @@
-file(GLOB SOURCES "src/*.c")
+set(SOURCES 
+        src/leg_control.c)
+
 add_library(leg_control ${SOURCES})
 
 target_include_directories(leg_control PUBLIC
