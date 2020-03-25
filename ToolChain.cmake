@@ -1,3 +1,5 @@
+# https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling
+
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
 

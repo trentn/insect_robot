@@ -11,6 +11,7 @@ Enable the SPI overlay, either using raspi-config or by modifying the config.txt
 
 ## Source Code Build
 
+### Native Build
 First run:
 
 ```
@@ -29,6 +30,26 @@ Once the dependecies are installed, run the following to build and install the r
 ```
 mkdir build && cd build
 cmake ..
+make
+make install
+```
+
+### Cross-Compile
+
+I am using a cross-compilation toolchain built using crosstool-ng.  
+Currently the insect robot is using a Raspberry Pi Zero W, which uses armv6.
+
+Run:
+
+```
+install_dependencies.sh -x armv6-rpi-linux-gnueabi
+```
+
+This will download the source code for the required dependencies and compile them for the Raspberry Pi.
+
+```
+mkdir build && cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=../ToolChain.cmake ..
 make
 make install
 ```
