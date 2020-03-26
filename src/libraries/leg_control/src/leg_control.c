@@ -3,6 +3,13 @@
 #include "servo_controller.h"
 #include "leg_control.h"
 
+const leg_struct legs[]  = {
+    { .coxa_ID = 0, .femur_ID = 2, .tibia_ID = 4},
+    { .coxa_ID = 1, .femur_ID = 3, .tibia_ID = 5},
+    { .coxa_ID = 6, .femur_ID = 8, .tibia_ID = 10},
+    { .coxa_ID = 7, .femur_ID = 9, .tibia_ID = 11}
+};
+
 void load_calibration(char* calibration_filename) {
     FILE* calibration_file = fopen(calibration_filename, "r");
 

@@ -1,7 +1,7 @@
 #include "leg_control.h"
 #include "kinematics.h"
 #include <unistd.h>
-#include <time.h>
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 
