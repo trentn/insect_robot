@@ -15,13 +15,13 @@ void print_pose(struct pose* leg_pose) {
 
 int main(int argc, char** argv){
 
-    struct point desired_point = {160.0, 0.0, 0.0};
+    struct point desired_point = {100.0, 10.0, 10.0};
     struct pose leg_pose = {0.0, 0.0, 0.0};
     inv_leg_kin(&desired_point, &leg_pose);
     print_pose(&leg_pose);
 
     desired_point.X = 0.0;
-    desired_point.Y = 160.0;
+    desired_point.Y = 100.0;
     inv_leg_kin(&desired_point, &leg_pose);
     print_pose(&leg_pose);
 

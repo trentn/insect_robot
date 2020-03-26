@@ -12,7 +12,7 @@
 #define RAD2DEG(x) x * (180.0/M_PI)
 #define DEG2RAD(x) x * (M_PI/180.0)
 
-#define DEBUG(x) printf("DEBUG x %f\n", x);
+#define DEBUG(s,x) printf("DEBUG %s %f\n", s, x)
 
 /*
  * @param pose is a leg pose in degrees
@@ -51,7 +51,7 @@ struct point* fwd_leg_kin(struct pose* pose) {
 void inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     leg_pose->coxa_theta = atan2(desired_endpoint->Y, desired_endpoint->X);
 
-    DEBUG(leg_pose->coxa_theta);
+    DEBUG("leg_pose->coxa_theta",leg_pose->coxa_theta);
 
     double tmp = (desired_endpoint->X*cos(leg_pose->coxa_theta)
                     + desired_endpoint->Y*sin(leg_pose->coxa_theta));
@@ -66,6 +66,13 @@ void inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
                     + desired_endpoint->Z*desired_endpoint->Z);
     
     double r = sqrt(a*a + b*b);
+
+    DEBUG("a",a);
+    DEBUG("b",b);
+    DEBUG("c",c);
+    DEBUG("r",r);
+
+
 
     //TODO: error checking to ensure this is solvable
     leg_pose->femur_theta = atan2(c,sqrt(r*r-c*c)) - atan2(a,b);
