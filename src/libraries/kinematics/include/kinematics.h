@@ -29,4 +29,4 @@ struct pose {
  * @param desired_endpoint - the desired location of the point foot
  * @returns pointer to pose structure to receive calculated pose.
  */
-void inv_leg_kin( struct point* desired_endpoint,  struct pose* leg_pose);
+int inv_leg_kin( struct point* desired_endpoint,  struct pose* leg_pose);

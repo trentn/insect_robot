@@ -19,6 +19,8 @@ leg_struct legs[]  = {
 	{ .coxa_ID = 7, .femur_ID = 9, .tibia_ID = 11}
 };
 
+enum legs{front_left, front_right, back_left, back_right};
+
 void load_calibration(char* calibration_filename);
 
 void reset_all_legs(void);

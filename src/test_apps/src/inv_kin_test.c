@@ -1,4 +1,4 @@
-#include "servo_controller.h"
+#include "leg_control.h"
 #include "kinematics.h"
 #include <unistd.h>
 #include <time.h>
@@ -14,16 +14,22 @@ void print_pose(struct pose* leg_pose) {
 
 
 int main(int argc, char** argv){
+    load_calibration(argv[1]);
 
     struct point desired_point = {100.0, 10.0, 10.0};
     struct pose leg_pose = {0.0, 0.0, 0.0};
     inv_leg_kin(&desired_point, &leg_pose);
-    print_pose(&leg_pose);
+    
+    leg_pose.coxa_theta = round(leg_pose.coxa_theta);
+    leg_pose.femur_theta = round(leg_pose.femur_theta);
+    leg_pose.tibia_theta = round(leg_pose.tibia_theta);
 
-    desired_point.X = 0.0;
-    desired_point.Y = 100.0;
-    inv_leg_kin(&desired_point, &leg_pose);
-    print_pose(&leg_pose);
+
+    set_leg_pose(front_right,
+                 (int)leg_pose.coxa_theta,
+                 (int)leg_pose.femur_theta,
+                 (int)leg_pose.tibia_theta);
+
 
     return 0;
 }

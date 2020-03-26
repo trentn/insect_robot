@@ -12,7 +12,11 @@
 #define RAD2DEG(x) x * (180.0/M_PI)
 #define DEG2RAD(x) x * (M_PI/180.0)
 
-#define DEBUG(s,x) printf("DEBUG %s %f\n", s, x)
+#ifdef __DEBUG__
+#define DEBUG(s,x) printf("DEBUG %s %f\n", s, x);
+#else
+#define DEBUG(s,x) 
+#endif
 
 /*
  * @param pose is a leg pose in degrees
@@ -48,10 +52,10 @@ struct point* fwd_leg_kin(struct pose* pose) {
  * reference: Page 329, Theory of Applied Robotics
  * reference: Page 338, Theory of Applied Robotics (solves for femur_theta)
  */
-void inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
+int inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     leg_pose->coxa_theta = atan2(desired_endpoint->Y, desired_endpoint->X);
 
-    DEBUG("leg_pose->coxa_theta",leg_pose->coxa_theta);
+    DEBUG("leg_pose->coxa_theta",leg_pose->coxa_theta)
 
     double tmp = (desired_endpoint->X*cos(leg_pose->coxa_theta)
                     + desired_endpoint->Y*sin(leg_pose->coxa_theta));
@@ -67,10 +71,10 @@ void inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     
     double r = sqrt(a*a + b*b);
 
-    DEBUG("a",a);
-    DEBUG("b",b);
-    DEBUG("c",c);
-    DEBUG("r",r);
+    DEBUG("a",a)
+    DEBUG("b",b)
+    DEBUG("c",c)
+    DEBUG("r",r)
 
 
 
@@ -93,5 +97,9 @@ void inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     leg_pose->femur_theta = RAD2DEG(leg_pose->femur_theta);
     leg_pose->tibia_theta = RAD2DEG(leg_pose->tibia_theta);
 
-    return leg_pose;
+    if(leg_pose->coxa_theta > 90.0 && leg_pose->coxa_theta < -90.0) return -1;
+    if(leg_pose->femur_theta > 90.0 && leg_pose->femur_theta < -90.0) return -1;
+    if(leg_pose->tibia_theta > 90.0 && leg_pose->tibia_theta < -90.0) return -1;
+
+    return 0;
 }
