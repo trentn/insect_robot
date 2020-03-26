@@ -1,13 +1,15 @@
 set(APPS
-    stand_up)
+    inv_kin_test)
 
 foreach(app ${APPS})
     add_executable(${app} src/${app}.c)
     target_link_libraries(${app} PUBLIC
                             servo_controller
                             leg_control
+                            kinematics
                             bcm2835
-                            ncurses)
+                            ncurses
+                            m)
     target_include_directories(${app} PUBLIC
                                 "include"
                                 "${PROJECT_SOURCE_DIR}/src/libraries/servo_controller/include"

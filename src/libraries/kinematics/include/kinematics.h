@@ -7,15 +7,15 @@
 
 
 struct point {
-    float X;
-    float Y;
-    float Z;
+    double X;
+    double Y;
+    double Z;
 };
 
 struct pose {
-    float coxa_theta;
-    float femur_theta;
-    float tibia_theta;
+    double coxa_theta;
+    double femur_theta;
+    double tibia_theta;
 };
 
 
@@ -29,4 +29,4 @@ struct pose {
  * @param desired_endpoint - the desired location of the point foot
  * @returns pointer to pose structure to receive calculated pose.
  */
- struct pose* inv_leg_kin( struct point* desired_endpoint);
+void inv_leg_kin( struct point* desired_endpoint,  struct pose* leg_pose);
