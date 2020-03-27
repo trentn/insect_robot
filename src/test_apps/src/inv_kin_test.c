@@ -16,7 +16,12 @@ void print_pose(struct pose* leg_pose) {
 int main(int argc, char** argv){
     load_calibration(argv[1]);
 
-    struct point desired_point = {100.0, 10.0, 10.0};
+    set_leg_pose(front_left, 0,0,0);
+    set_leg_pose(front_right, 0,0,0);
+    set_leg_pose(back_left, 0,0,0);
+    set_leg_pose(back_right, 0,0,0);
+
+    struct point desired_point = {100.0, -10.0, -10.0};
     struct pose leg_pose = {0.0, 0.0, 0.0};
     inv_leg_kin(&desired_point, &leg_pose);
     
