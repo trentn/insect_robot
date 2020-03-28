@@ -35,14 +35,8 @@ int main(int argc, char** argv){
     set_leg_pose(back_left, 0,0,0);
     set_leg_pose(back_right, 0,0,0);
 
-    struct point desired_point = {100.0, 50.0, 50.0};
+    struct point desired_point = {150.0, 0.0, -50.0};
     struct pose leg_pose = {0.0, 0.0, 0.0};
-
-    inv_leg_kin(&desired_point, &leg_pose);
-    round_and_set(&leg_pose);
-    sleep(1);
-
-    desired_point.Z = -50;
 
     inv_leg_kin(&desired_point, &leg_pose);
     round_and_set(&leg_pose);
@@ -54,7 +48,13 @@ int main(int argc, char** argv){
     round_and_set(&leg_pose);
     sleep(1);
 
-    desired_point.Z = 50;
+    desired_point.Z = 50.0;
+
+    inv_leg_kin(&desired_point, &leg_pose);
+    round_and_set(&leg_pose);
+    sleep(1);
+
+    desired_point.X = 150.0;
 
     inv_leg_kin(&desired_point, &leg_pose);
     round_and_set(&leg_pose);

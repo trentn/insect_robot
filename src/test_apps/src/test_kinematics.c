@@ -22,26 +22,26 @@ void print_point(struct point* point) {
 
 
 int main(int argc, char** argv){
-    struct point desired_point = {150.0, 0.0, 50.0};
+    struct point desired_point = {150.0, 0.0, -50.0};
     struct pose leg_pose = {0.0, 0.0, 0.0};
 
     inv_leg_kin(&desired_point, &leg_pose);
     print_pose(&leg_pose);
     sleep(1);
 
-    desired_point.Z = -50;
-
-    inv_leg_kin(&desired_point, &leg_pose);
-    print_pose(&leg_pose);
-    sleep(1);
-
     desired_point.X = 120.0;
-
+    
     inv_leg_kin(&desired_point, &leg_pose);
     print_pose(&leg_pose);
     sleep(1);
 
     desired_point.Z = 50;
+
+    inv_leg_kin(&desired_point, &leg_pose);
+    print_pose(&leg_pose);
+    sleep(1);
+
+    desired_point.X = 150.0;
 
     inv_leg_kin(&desired_point, &leg_pose);
     print_pose(&leg_pose);
