@@ -23,10 +23,15 @@ struct pose {
  * @param pose- input pose of the leg
  * @returns pointer to struct with location of foot
  */
- struct point* fwd_leg_kin(struct pose* pose);
+int fwd_leg_kin(struct pose* pose, struct point* foot_location);
 
 /*
  * @param desired_endpoint - the desired location of the point foot
  * @returns pointer to pose structure to receive calculated pose.
  */
 int inv_leg_kin( struct point* desired_endpoint,  struct pose* leg_pose);
+
+
+
+int fwd_leg_kin_example(struct pose* pose, struct point* foot_location);
+int inv_leg_kin_example( struct point* desired_endpoint,  struct pose* leg_pose);
