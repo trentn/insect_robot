@@ -1,5 +1,5 @@
 set(APPS
-    )
+    inv_kin_test)
 
 # order of libraries listed matters: https://stackoverflow.com/questions/51725564/cmake-doesnt-link-c-and-c-static-libraries-undefined-reference-to-function
 
