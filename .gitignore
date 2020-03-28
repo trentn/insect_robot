@@ -1,6 +1,7 @@
 .vscode/*
 bcm2835-1.**/
 build/*
+local_build/*
 depends/*
 
 *.tar.*

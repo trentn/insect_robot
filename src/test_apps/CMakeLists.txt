@@ -1,5 +1,5 @@
 set(APPS
-    inv_kin_test)
+    )
 
 # order of libraries listed matters: https://stackoverflow.com/questions/51725564/cmake-doesnt-link-c-and-c-static-libraries-undefined-reference-to-function
 
@@ -22,7 +22,8 @@ endforeach()
 install(TARGETS ${APPS} DESTINATION bin)
 
 
-set(LOCAL_APPS)
+set(LOCAL_APPS
+    test_kinematics)
 
 
 foreach(app ${LOCAL_APPS})

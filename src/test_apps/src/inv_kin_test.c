@@ -63,5 +63,9 @@ int main(int argc, char** argv){
     desired_point.X = 160.0;
     desired_point.Z = 0.0;
 
+    inv_leg_kin(&desired_point, &leg_pose);
+    round_and_set(&leg_pose);
+    sleep(1);
+
     return 0;
 }
