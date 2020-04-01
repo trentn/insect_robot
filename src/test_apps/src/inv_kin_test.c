@@ -24,6 +24,23 @@ void round_and_set(struct pose* leg_pose){
                  coxa_theta,
                  femur_theta,
                  tibia_theta);
+    
+    set_leg_pose(back_right,
+                 coxa_theta,
+                 femur_theta,
+                 tibia_theta);
+    
+    set_leg_pose(front_left,
+                 coxa_theta,
+                 femur_theta,
+                 tibia_theta);
+
+    set_leg_pose(back_left,
+                 coxa_theta,
+                 femur_theta,
+                 tibia_theta);
+
+
 
 }
 

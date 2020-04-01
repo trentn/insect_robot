@@ -41,7 +41,7 @@ void init_servo_controller(FILE* calibration_file){
         fgets(buff, 10, calibration_file);
 
         servos[i].zero_angle_pwm =  atoi(buff);
-        servos[i].orientation = i%2==0? right : left;
+        servos[i].orientation = i%2==0? left : right;
       }
     }
 }
