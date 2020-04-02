@@ -69,9 +69,9 @@ int inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     leg_pose->femur_theta = RAD2DEG(leg_pose->femur_theta);
     leg_pose->tibia_theta = RAD2DEG(leg_pose->tibia_theta);
 
-    if(leg_pose->coxa_theta > 90.0 && leg_pose->coxa_theta < -90.0) return -1;
-    if(leg_pose->femur_theta > 90.0 && leg_pose->femur_theta < -90.0) return -1;
-    if(leg_pose->tibia_theta > 90.0 && leg_pose->tibia_theta < -90.0) return -1;
+    if(leg_pose->coxa_theta > 90.0 || leg_pose->coxa_theta < -90.0) return -1;
+    if(leg_pose->femur_theta > 90.0 || leg_pose->femur_theta < -90.0) return -1;
+    if(leg_pose->tibia_theta > 90.0 || leg_pose->tibia_theta < -90.0) return -1;
 
     return 0;
 }
