@@ -56,8 +56,11 @@ void set_servo_pwm(uint8_t servo_id, uint16_t pulse_length){
     bcm2835_spi_transfer(second_byte);
 }
 
-void set_servo_angle(int servo_id, int angle){
-  int pulse_length = servos[servo_id].zero_angle_pwm + (angle*ANGLE_CONVERSION_RATE)*servos[servo_id].orientation;
+void set_servo_angle(int servo_id, double angle){
+  int tmp = (int)round(angle*10);
+
+  //int pulse_length = servos[servo_id].zero_angle_pwm + (angle*ANGLE_CONVERSION_RATE)*servos[servo_id].orientation;
+  int pulse_length = servos[servo_id].zero_angle_pwm + tmp*servos[servo_id].orientation;
 
   set_servo_pwm((uint8_t)servo_id, (uint16_t)pulse_length);
 }

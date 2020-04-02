@@ -23,7 +23,7 @@ void reset_all_legs(void) {
     }
 }
 
-void set_leg_pose(int leg_ID, int coxa_theta, int femur_theta, int tibia_theta) {
+void set_leg_pose(int leg_ID, double coxa_theta, double femur_theta, double tibia_theta) {
 	set_servo_angle(legs[leg_ID].coxa_ID, coxa_theta);
 	set_servo_angle(legs[leg_ID].femur_ID, femur_theta);
 	set_servo_angle(legs[leg_ID].tibia_ID, tibia_theta);

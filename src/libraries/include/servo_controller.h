@@ -56,7 +56,7 @@ void set_servo_pwm(uint8_t servo_id, uint16_t pulse_length);
  *
  */
 
-void set_servo_angle(int servo_id, int angle);
+void set_servo_angle(int servo_id, double angle);
 
 /*
  * terminate the SPI connection
