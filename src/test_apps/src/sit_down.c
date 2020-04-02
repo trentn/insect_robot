@@ -11,8 +11,6 @@ void set_to_zero(void) {
 
 int main(int argc, char** argv){
     load_calibration(argv[1]);
-    set_to_zero();
-    sleep(1);
     struct timespec ts = {0, 100000000L};
 
     struct point front_legs = {125.0, -75.0, 0.0};
@@ -27,7 +25,6 @@ int main(int argc, char** argv){
 		    leg_pose.femur_theta,
 		    leg_pose.tibia_theta);
   
-    nanosleep(&ts, NULL);
 
 
     //left front leg
@@ -37,7 +34,6 @@ int main(int argc, char** argv){
 		    leg_pose.tibia_theta);
   
 
-    nanosleep(&ts, NULL);
 
     struct point back_legs = {125.0, 75.0, 0.0};
     inv_leg_kin(&back_legs,&leg_pose);
@@ -49,7 +45,6 @@ int main(int argc, char** argv){
 		    leg_pose.tibia_theta);
   
 
-    nanosleep(&ts, NULL);
 
     //right rear leg
     set_leg_pose(back_right,
@@ -58,10 +53,9 @@ int main(int argc, char** argv){
 		    leg_pose.tibia_theta);
   
 
-    nanosleep(&ts,NULL);
-
     
-    front_legs.Z = -60.0;
+    front_legs.X = 160;
+    front_legs.Y = 0;
     inv_leg_kin(&front_legs,&leg_pose);
 
 
@@ -71,13 +65,16 @@ int main(int argc, char** argv){
 		    leg_pose.femur_theta,
 		    leg_pose.tibia_theta);
 
+    nanosleep(&ts, NULL);
     //left front leg
     set_leg_pose(front_left,
 		    leg_pose.coxa_theta,
 		    leg_pose.femur_theta,
 		    leg_pose.tibia_theta);
   
-    back_legs.Z =  -60.0;
+    nanosleep(&ts, NULL);
+    back_legs.X = 160;
+    back_legs.Y = 0;
     inv_leg_kin(&back_legs,&leg_pose);
     
     //left rear leg
@@ -86,6 +83,7 @@ int main(int argc, char** argv){
 		    leg_pose.femur_theta,
 		    leg_pose.tibia_theta);
   
+    nanosleep(&ts, NULL);
 
 
     //right rear leg
@@ -95,5 +93,4 @@ int main(int argc, char** argv){
 		    leg_pose.tibia_theta);
   
 
-   
 }
