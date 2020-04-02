@@ -23,6 +23,6 @@ void load_calibration(char* calibration_filename);
 
 void reset_all_legs(void);
 
-void set_leg_pose(int leg_ID, int coxa_theta, int femur_theta, int tibia_theta);
+void set_leg_pose(int leg_ID, double coxa_theta, double femur_theta, double tibia_theta);
 
 #endif

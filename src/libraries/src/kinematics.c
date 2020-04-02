@@ -60,7 +60,7 @@ int inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
         if(leg_pose->tibia_theta < M_PI/2.0 && leg_pose->tibia_theta > -M_PI/2.0){
             leg_pose->femur_theta = asin(y/hyp) + acos((b*b-x*x-y*y-a*a)/(-2*a*hyp));
         } else {
-            leg_pose->tibia_theta = (M_PI - acos((x*x+y*y-a*a-b*b)/(-2*a*b)));
+	    leg_pose->tibia_theta = (M_PI - acos((x*x+y*y-a*a-b*b)/(-2*a*b)));
             leg_pose->femur_theta = -(asin(y/hyp) + acos((b*b-x*x-y*y-a*a)/(-2*a*hyp)));
         }   
     }
