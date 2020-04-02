@@ -30,8 +30,3 @@ int fwd_leg_kin(struct pose* pose, struct point* foot_location);
  * @returns pointer to pose structure to receive calculated pose.
  */
 int inv_leg_kin( struct point* desired_endpoint,  struct pose* leg_pose);
-
-
-
-int fwd_leg_kin_example(struct pose* pose, struct point* foot_location);
-int inv_leg_kin_example( struct point* desired_endpoint,  struct pose* leg_pose);
