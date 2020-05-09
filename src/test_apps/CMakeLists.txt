@@ -1,5 +1,6 @@
 set(APPS
-    process_gait)
+    process_gait
+    posn_to_pose)
 
 # order of libraries listed matters: https://stackoverflow.com/questions/51725564/cmake-doesnt-link-c-and-c-static-libraries-undefined-reference-to-function
 
