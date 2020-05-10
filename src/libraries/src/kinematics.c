@@ -41,11 +41,13 @@ int inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
     leg_pose->coxa_theta = atan2(desired_endpoint->Y, desired_endpoint->X);
 
     //TODO: bettering variable names
-    double x = sqrt(desired_endpoint->X*desired_endpoint->X + desired_endpoint->Y+desired_endpoint->Y)-COXA_LENGTH;
+    double x = sqrt(desired_endpoint->X*desired_endpoint->X + desired_endpoint->Y*desired_endpoint->Y)-COXA_LENGTH;
+    printf("%lf\n",x);
     double y = desired_endpoint->Z;
 
-    double a = FEMUR_LENGTH;
-    double b = TIBIA_LENGTH;
+    double a = TIBIA_LENGTH;
+    double b = FEMUR_LENGTH;
+    
 
     double hyp = sqrt(x*x+y*y);
 
@@ -56,13 +58,9 @@ int inv_leg_kin( struct point* desired_endpoint, struct pose* leg_pose) {
         leg_pose->tibia_theta = 0.0;
     }
     else{
-        leg_pose->tibia_theta = -(M_PI - acos((x*x+y*y-a*a-b*b)/(-2*a*b)));
-        if(leg_pose->tibia_theta < M_PI/2.0 && leg_pose->tibia_theta > -M_PI/2.0){
-            leg_pose->femur_theta = asin(y/hyp) + acos((b*b-x*x-y*y-a*a)/(-2*a*hyp));
-        } else {
-	    leg_pose->tibia_theta = (M_PI - acos((x*x+y*y-a*a-b*b)/(-2*a*b)));
-            leg_pose->femur_theta = -(asin(y/hyp) + acos((b*b-x*x-y*y-a*a)/(-2*a*hyp)));
-        }   
+        //https://www.mathsisfun.com/algebra/trig-solving-sss-triangles.html
+        leg_pose->tibia_theta = -(M_PI - acos((a*a+b*b-x*x+y*y)/(2*a*b)));
+        leg_pose->femur_theta = asin(y/hyp) + acos((b*b+x*x+y*y-a*a)/(2*a*hyp));
     }
 
     leg_pose->coxa_theta =  RAD2DEG(leg_pose->coxa_theta);
